@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
+##
+## Autostart Programs
+
+# evilwm dir
+edir="$HOME/.evilwm"
+
+# export path for evilwm scripts
+export PATH=$PATH:$edir/scripts
+
+# Kill already running process
+_ps=(xsettingsd ksuperkey)
+for _prs in "${_ps[@]}"; do
+	if [[ `pidof ${_prs}` ]]; then
+		killall -9 ${_prs}
+	fi
+done
+
+# Enable Simple X hotkey daemon
+sxhkd -c "$edir"/sxhkdrc &
+
+# Lauch xsettingsd daemon
+xsettingsd --config="$edir"/xsettingsd &
+
+# polkit agent
+if [[ ! `pidof xfce-polkit` ]]; then
+	/usr/lib/xfce-polkit/xfce-polkit &
+fi
+
+# Enable power management
+xfce4-power-manager &
+
+# Enable Super Keys For Menu
+ksuperkey -e 'Super_L=Alt_L|F1' &
+ksuperkey -e 'Super_R=Alt_L|F1' &
+
+# Fix cursor
+xsetroot -cursor_name left_ptr
+
+# Restore wallpaper
+hsetroot -root -cover "$edir"/theme/wallpaper
+
+# Lauch notification daemon
+"$edir"/scripts/evilwm_dunst
+
+# Lauch polybar
+"$edir"/scripts/evilwm_bar
+
+# Lauch compositor
+"$edir"/scripts/evilwm_comp
+
+# Start mpd
+exec mpd &
+
+# Start evilwm window manager
+/usr/bin/evilwm

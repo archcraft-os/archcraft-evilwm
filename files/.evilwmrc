@@ -1,0 +1,156 @@
+## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
+##
+## EvilWM config file for Archcraft
+
+## General ---------------------------------------------------#
+##
+## specifies the X display to run on. Usually this can be inferred from the DISPLAY environment variable.
+#display :0
+
+## specifies an alternative program to run when spawning a new terminal.
+term evilwm_term
+
+## specify a font to use when resizing or displaying window titles.
+fn JetBrainsMono:pixelsize=10
+
+## frame colour of currently active, fixed active, and inactive windows respectively. 
+## Either specify an X11 colour name like goldenrod, or a hex triplet like #DAA520.
+fg #895e99
+fc #26cdb8
+bg #484c5b
+
+## width of window borders in pixels.
+bw 2
+
+## enable snap-to-border support. `distance` is the proximity in pixels to snap to.
+snap 6
+
+## ignore monitor geometry and use the whole screen dimensions. This is the old behaviour from before
+## multi-monitor support was implemented, and may still be useful, eg when one large monitor is driven from multiple outputs.
+#wholescreen
+
+## number of virtual desktops to provide. Defaults to 8. 
+## Any extras will only be accessible by pagers or using Control+Alt+(Left/Right).
+numvdesks 8
+
+## draw a window outline while moving or resizing.
+#nosoliddrag
+
+## match an application by instance name and class (for help in finding these, use the `xprop` 
+## tool to extract the WM_CLASS property).
+## Subsequent `geometry`, `dock`, `vdesk` and `fixed` options will apply to this match.
+##
+## geometry : apply a geometry (using a standard X geometry string) to applications matching the last `app`.
+##
+## dock : specify that application should be considered to be a dock, even if it lacks the appropriate property.
+##
+## vdesk : specify a default virtual desktop for applications matching the last `app`. Note that virtual desktops are numbered from zero.
+##
+## fixed : specify that application is to start with a fixed client window.
+#app Alacritty
+#vdesk 0
+#app Navigator
+#vdesk 1
+#app thunar
+#vdesk 2
+#app geany
+#vdesk 3
+app polybar
+dock
+
+## Key Bindings ---------------------------------------------------#
+##
+## override the default keyboard modifiers used to grab keys for window manager functionality.
+##
+## mask1 is used for most keyboard controls (default: control+alt), and mask2 is used for mouse
+## button controls and cycling windows (default: alt). altmask is used to modify the behaviour of
+## certain controls (default: shift). Modifiers may be separated with + signs. Valid modifiers are
+## 'shift', 'control', 'alt', 'mod1'…'mod5'.
+##
+## mask1 modifier[+modifier]…
+mask1 mod4
+mask2 mod1
+
+## bind a key pressed with specified modifiers to a window manager function. key is an X11 keysym name,
+## modifiers are as above, but may also include 'mask1', 'mask2' and 'altmask' to refer to the globally-configured
+## combinations. See FUNCTIONS for a list of available functions and the flags they recognise. If function is empty, a bind is removed.
+##
+## bind key[+modifier]…=[function[,flag]…]
+
+# Start a terminal.
+#bind mask1+Return=spawn
+
+# Delete a window. This is the co-operative way of closing applications, 
+# as it sends the client a signal indicating that they should shut down.
+bind mask1+c=delete
+
+# Kill a window. A more forceful way of closing an application if it is not responding to delete requests.
+bind mask1+q=kill
+
+# When called with the toggle flag, toggles visibility of any window claiming to be a dock.
+bind mask1+d=dock,toggle
+
+# With the toggle flag, toggle whether a window is fixed (visible on all virtual desktops) or not.
+bind mask1+space=fix,toggle
+
+# Shows extra information about the current window for as long as the key is held.
+bind mask1+i=info
+
+# Lower the current window.
+bind mask1+mask2+l=lower
+
+# Raises the current window.
+bind mask1+mask2+r=raise
+
+# Cycle to the next window.
+bind mask1+Tab=next
+
+# moves a window in the direction indicated by other flags: up, down, left or right.
+bind mask1+Left=move,relative+left
+bind mask1+Down=move,relative+down
+bind mask1+Up=move,relative+up
+bind mask1+Right=move,relative+right
+
+# moves a window in the direction specified by other flag to the edge of the monitor.
+bind mask1+h=move,top+left
+bind mask1+k=move,top+right
+bind mask1+j=move,bottom+left
+bind mask1+l=move,bottom+right
+
+# modifies the width or height of the window as indicated by other flags: up (reduce height), down (increase height), 
+# left (reduce width) or right (increase width).
+bind mask1+control+Left=resize,relative+left
+bind mask1+control+Down=resize,relative+down
+bind mask1+control+Up=resize,relative+up
+bind mask1+control+Right=resize,relative+right
+
+# maximises along axes specified by other flags: horizontal, vertical or both
+bind mask1+shift+v=resize,toggle+v
+bind mask1+shift+h=resize,toggle+h
+bind mask1+shift+b=resize,toggle+v+h
+
+# With the `toggle` flag specified, switch to the previously visible vdesk. With the `relative` flag
+# set, either increase vdesk number (with up flag) or decrease it (with down flag).
+#
+# If neither flag is specified, a numerical argument indicates which vdesk to switch to.
+bind mask1+1=vdesk,0
+bind mask1+2=vdesk,1
+bind mask1+3=vdesk,2
+bind mask1+4=vdesk,3
+bind mask1+5=vdesk,4
+bind mask1+6=vdesk,5
+bind mask1+7=vdesk,6
+bind mask1+8=vdesk,7
+bind mask2+control+Left=vdesk,relative+down
+bind mask2+control+Right=vdesk,relative+up
+bind mask2+control+b=vdesk,toggle
+              
+## Mouse Bindings -------------------------------------------------#
+##
+## bind a mouse button to a window manager function. While modifiers can be specified, they will be ignored; 
+## the button on its own will trigger if pressed within a window's frame, or with 'mask2' held  
+## anywhere within a window. Function and flags is as with key binds above. Valid buttons are 'button1'…'button5'.
+##
+## bind button=[function[,flag]…]
+bind button1=move
+bind button3=resize

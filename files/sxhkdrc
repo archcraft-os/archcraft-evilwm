@@ -1,0 +1,103 @@
+## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
+
+##---------- Keybindings for EvilWM ----------##
+
+# Terminal (alacritty)
+super + Return
+	bash ~/.evilwm/scripts/evilwm_term
+
+# Terminal (floating)
+super + shift + Return
+	bash ~/.evilwm/scripts/evilwm_term --full
+
+##---------- Rofi Launcher & Menus ----------##
+
+# Rofi App Launcher
+alt + F1
+	bash ~/.evilwm/scripts/rofi_launcher
+
+# Rofi Runner
+alt + F2
+	bash ~/.evilwm/scripts/rofi_runner
+
+# Rofi Network Menu
+super + n
+	~/.evilwm/scripts/network_menu
+
+# Rofi Menus/Applets
+super + {b,r,m,s,x}
+	bash ~/.evilwm/scripts/{rofi_bluetooth,rofi_asroot,rofi_music,rofi_screenshot,rofi_powermenu}
+
+##---------- Applications ----------##
+
+# Launch Apps
+super + {f,w,e}
+	{thunar,firefox,geany}
+
+# Terminal Apps
+ctrl + alt + {v,r,h}
+	alacritty --config-file ~/.evilwm/alacritty/alacritty.yml -e {vim,ranger,htop}
+
+# Lockscreen
+ctrl + alt + l
+    betterlockscreen --lock
+
+# Music Player
+ctrl + alt + m
+    ~/.evilwm/scripts/evilwm_music
+
+# Color Picker
+super + p
+    ~/.evilwm/scripts/evilwm_colorpicker
+
+##---------- System Keys ----------##
+
+# Take a screenshot
+Print
+	~/.evilwm/scripts/evilwm_screenshot --now
+	
+# Take screenshot in 5 second
+alt + Print	
+	~/.evilwm/scripts/evilwm_screenshot --in5
+
+# Take screenshot in 10 second
+shift + Print	
+	~/.evilwm/scripts/evilwm_screenshot --in10
+
+# Take screenshot of active window
+ctrl + Print
+	~/.evilwm/scripts/evilwm_screenshot --win
+
+# Take screenshot of area
+super + Print
+	~/.evilwm/scripts/evilwm_screenshot --area
+
+# Brighness control
+XF86MonBrightness{Up,Down}
+	~/.evilwm/scripts/evilwm_brightness{ --inc, --dec}
+	
+# Volume control
+XF86Audio{RaiseVolume,LowerVolume}
+	~/.evilwm/scripts/evilwm_volume{ --inc, --dec}
+
+XF86AudioMute
+	~/.evilwm/scripts/evilwm_volume --toggle
+	
+XF86AudioMicMute
+	~/.evilwm/scripts/evilwm_volume --toggle-mic
+
+# Music control
+XF86Audio{Next,Prev,Play,Stop}
+	mpc {next,prev,toggle,stop}
+
+# Reload sxhkd configuration file
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# Kill selected window
+ctrl + alt + Delete
+    xkill
+
+# Killall
+super + ctrl + q
+    kill -9 -1

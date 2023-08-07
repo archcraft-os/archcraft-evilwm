@@ -1,0 +1,13 @@
+## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
+
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = archcraft-evilwm
+Target = evilwm
+
+[Action]
+Description = Modifying EvilWM Desktop file...
+When = PostTransaction
+Exec = /usr/bin/sed -i -e 's|Exec=.*|Exec=/usr/local/bin/run-evilwm|g' /usr/share/xsessions/evilwm.desktop
