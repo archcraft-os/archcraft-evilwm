@@ -40,7 +40,7 @@ ksuperkey -e 'Super_R=Alt_L|F1' &
 xsetroot -cursor_name left_ptr
 
 # Restore wallpaper
-hsetroot -root -cover "$edir"/theme/wallpaper
+hsetroot -cover "$edir"/theme/wallpaper
 
 # Lauch notification daemon
 "$edir"/scripts/evilwm_dunst

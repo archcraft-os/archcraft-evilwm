@@ -10,4 +10,4 @@ Target = evilwm
 [Action]
 Description = Modifying EvilWM Desktop file...
 When = PostTransaction
-Exec = /usr/bin/sed -i -e 's|Exec=.*|Exec=/usr/local/bin/run-evilwm|g' /usr/share/xsessions/evilwm.desktop
+Exec = /usr/bin/sed -i -e 's|Exec=.*|Exec=/usr/bin/run-evilwm|g' /usr/share/xsessions/evilwm.desktop

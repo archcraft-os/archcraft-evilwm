@@ -1,2 +1,2 @@
 # archcraft-evilwm
- // Configuration : evilwm
+ // Configuration : Evilwm
