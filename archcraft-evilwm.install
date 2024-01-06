@@ -24,9 +24,9 @@ skel_dir='/etc/skel'
 wm_config='.evilwm'
 wm_name='Evilwm'
 current_config="$config_dir/$wm_config"
-updated_config="$config_dir/${wm_config}_pacnew_`date +%d-%m-%y`"
+updated_config="$config_dir/${wm_config}_pacnew_`date +%Y-%m-%d`"
 current_config_file="$config_dir/${wm_config}rc"
-updated_config_file="$config_dir/${wm_config}rc_pacnew_`date +%d-%m-%y`"
+updated_config_file="$config_dir/${wm_config}rc_pacnew_`date +%Y-%m-%d`"
 
 ## -----------------------------------
 
