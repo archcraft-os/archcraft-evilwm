@@ -7,6 +7,9 @@
 # evilwm dir
 edir="$HOME/.evilwm"
 
+# Export desktop session
+export XDG_CURRENT_DESKTOP='evilwm'
+
 # export path for evilwm scripts
 export PATH=$PATH:$edir/scripts
 
