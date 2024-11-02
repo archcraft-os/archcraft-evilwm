@@ -10,6 +10,10 @@ super + Return
 super + shift + Return
 	bash ~/.evilwm/scripts/evilwm_term --full
 
+# Terminal (kitty)
+ctrl + alt + t
+	bash ~/.evilwm/scripts/evilwm_kitty
+
 ##---------- Rofi Launcher & Menus ----------##
 
 # Rofi App Launcher

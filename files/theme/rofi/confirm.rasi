@@ -65,7 +65,7 @@ dummy {
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
-    str:                         "";
+    str:                         "";
     padding:                     8px;
     background-color:            @selected;
     text-color:                  inherit;
