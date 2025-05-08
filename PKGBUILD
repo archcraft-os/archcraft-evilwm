@@ -2,7 +2,7 @@
 
 pkgname=archcraft-evilwm
 pkgver=2.0
-pkgrel=4
+pkgrel=5
 pkgdesc="EvilWM Configurations for Archcraft"
 arch=('any')
 url="https://github.com/archcraft-os/archcraft-evilwm"
